@@ -116,7 +116,7 @@ class _AddState extends State<Add> {
               padding: const EdgeInsets.all(5.0),
               child: ElevatedButton.icon(
                 onPressed: ()async {
-                  Navigator.pushNamed(context, '/add');
+                  Navigator.pushNamed(context, '/add_table');
                 },
                 icon: Icon(Icons.add),
                 label: Text(

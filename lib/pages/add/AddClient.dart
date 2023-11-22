@@ -34,7 +34,7 @@ class _AddClientState extends State<AddClient> {
     ),
     body: SingleChildScrollView(
       child: Center(
-      child: Column(
+        child: Column(
         children: <Widget>[
 
           Padding(
