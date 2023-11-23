@@ -5,13 +5,13 @@ class Menu {
   String dishName;
   String dishDescription;
   int price;
-  String allergenes;
+  String allergens;
 
   Menu({
     required this.id,
     required this.dishName,
     required this.dishDescription,
     required this.price,
-    required this.allergenes
+    required this.allergens
   });
 }

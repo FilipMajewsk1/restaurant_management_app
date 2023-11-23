@@ -53,7 +53,7 @@ class _AddState extends State<Add> {
               padding: const EdgeInsets.all(5.0),
               child: ElevatedButton.icon(
                 onPressed: ()async {
-                  Navigator.pushNamed(context, '/add');
+                  Navigator.pushNamed(context, '/add_reservation');
                 },
                 icon: Icon(Icons.add),
                 label: Text(
@@ -74,7 +74,7 @@ class _AddState extends State<Add> {
               padding: const EdgeInsets.all(5.0),
               child: ElevatedButton.icon(
                 onPressed: ()async {
-                  Navigator.pushNamed(context, '/add');
+                  Navigator.pushNamed(context, '/add_order');
                 },
                 icon: Icon(Icons.add),
                 label: Text(
@@ -95,7 +95,7 @@ class _AddState extends State<Add> {
               padding: const EdgeInsets.all(5.0),
               child: ElevatedButton.icon(
                 onPressed: ()async {
-                  Navigator.pushNamed(context, '/add');
+                  Navigator.pushNamed(context, '/add_menu_position');
                 },
                 icon: Icon(Icons.add),
                 label: Text(
