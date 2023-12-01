@@ -13,4 +13,14 @@ class Client{
     required this.email,
     required this.phoneNum
   });
+
+  factory Client.fromJson(Map<String, dynamic> json) {
+    return Client(
+      id: json['id'],
+      name: json['name'],
+      surname: json['surname'],
+      email: json['email'],
+      phoneNum: json['phoneNum'],
+    );
+  }
 }

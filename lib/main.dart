@@ -6,6 +6,12 @@ import 'package:restaurant_management_app/pages/add/AddMenuPosition.dart';
 import 'package:restaurant_management_app/pages/add/AddReservation.dart';
 import 'package:restaurant_management_app/pages/add/AddTable.dart';
 import 'package:restaurant_management_app/pages/show/Show.dart';
+import 'package:restaurant_management_app/pages/show/clients/ShowClients.dart';
+import 'package:restaurant_management_app/pages/show/menu/ShowMenu.dart';
+import 'package:restaurant_management_app/pages/show/orders/ShowOrders.dart';
+import 'package:restaurant_management_app/pages/show/reservations/ShowReservations.dart';
+import 'package:restaurant_management_app/pages/show/tables/ShowTables.dart';
+
 void main() => runApp(MaterialApp(
   initialRoute: '/home',
   routes: {
@@ -17,10 +23,10 @@ void main() => runApp(MaterialApp(
     '/add_menu_position': (context) => AddMenuPosition(),
     '/add_reservation': (context) => AddReservation(),
     '/add_order': (context) => Add(),
-    '/show_clients': (context) => Show(),
-    '/show_tables': (context) => Show(),
-    '/show_menu': (context) => Show(),
-    '/show_reservations': (context) => Show(),
-    '/show_orders': (context) => Show(),
+    '/show_clients': (context) => ShowClients(),
+    '/show_tables': (context) => ShowTables(),
+    '/show_menu': (context) => ShowMenu(),
+    '/show_reservations': (context) => ShowReservations(),
+    '/show_orders': (context) => ShowOrders(),
   },
 ));

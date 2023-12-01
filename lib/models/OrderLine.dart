@@ -14,4 +14,13 @@ class OrderLine{
   required this.position,
   required this.quantity
   });
+
+  factory OrderLine.fromJson(Map<String, dynamic> json) {
+    return OrderLine(
+      id: json['id'],
+      order: Order.fromJson(json['order']),
+      position: Menu.fromJson(json['position']),
+      quantity: json['quantity'],
+    );
+  }
 }

@@ -14,4 +14,14 @@ class Menu {
     required this.price,
     required this.allergens
   });
+
+  factory Menu.fromJson(Map<String, dynamic> json) {
+    return Menu(
+      id: json['id'],
+      dishName: json['dishName'],
+      dishDescription: json['dishDescription'],
+      price: json['price'],
+      allergens: json['allergens'],
+    );
+  }
 }

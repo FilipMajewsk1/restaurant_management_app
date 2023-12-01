@@ -9,4 +9,12 @@ class TTable{
     required this.name,
     required this.size
   });
+
+  factory TTable.fromJson(Map<String, dynamic> json) {
+    return TTable(
+      id: json['id'],
+      name: json['name'],
+      size: json['size'],
+    );
+  }
 }

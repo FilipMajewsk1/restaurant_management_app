@@ -8,6 +8,7 @@ class AddReservation extends StatefulWidget {
 }
 class _AddReservationState extends State<AddReservation> {
 
+  TextEditingController nameController = TextEditingController();
   TextEditingController ddateController = TextEditingController();
   TextEditingController hhourController = TextEditingController();
   TextEditingController clientController = TextEditingController();
@@ -15,6 +16,7 @@ class _AddReservationState extends State<AddReservation> {
   TextEditingController guestNumController = TextEditingController();
   TextEditingController additionalRemarksController = TextEditingController();
 
+  String name = "";
   String ddate = "";
   String hhour = "";
   String client = "";
@@ -40,6 +42,53 @@ class _AddReservationState extends State<AddReservation> {
           child: Center(
             child: Column(
               children: <Widget>[
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 260, 0),
+                  child: Text(
+                    "Name",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 300,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: nameController,
+                          decoration: const InputDecoration(
+                            border: UnderlineInputBorder(),
+                            labelText: 'Enter name',
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            setState(() {
+                              if (nameController.text != "") {
+                                name = nameController.text;
+                              }
+                            });
+                          },
+                          icon: Icon(Icons.check),
+                          label: Text("Enter"),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Colors
+                                .green[900]),
+                            minimumSize: MaterialStateProperty.all(Size(
+                                100, 35)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
 
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 20, 260, 0),
@@ -327,18 +376,20 @@ class _AddReservationState extends State<AddReservation> {
                   padding: const EdgeInsets.all(25),
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      if (ddateController.text != ""
+                      if (nameController.text != ""
+                          &&ddateController.text != ""
                           && hhourController.text != ""
                           && clientController.text != ""
                           && tableController.text != ""
                           && additionalRemarksController.text != "") {
+                        name = nameController.text;
                         ddate = ddateController.text;
                         hhour = hhourController.text;
                         client = clientController.text;
                         table = tableController.text;
                         additionalRemarks = additionalRemarksController.text;
                       }
-                      if(ddate != "") {
+                      if(name != "") {
 
                         Navigator.pop(context);
                       }

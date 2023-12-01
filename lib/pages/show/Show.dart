@@ -32,7 +32,7 @@ class _ShowState extends State<Show> {
               padding: const EdgeInsets.all(5.0),
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/show');
+                  Navigator.pushNamed(context, '/show_clients');
                 },
                 icon: Icon(Icons.list),
                 label: Text(
@@ -53,7 +53,7 @@ class _ShowState extends State<Show> {
               padding: const EdgeInsets.all(5.0),
               child: ElevatedButton.icon(
                 onPressed: ()async {
-                  Navigator.pushNamed(context, '/add');
+                  Navigator.pushNamed(context, '/show_reservations');
                 },
                 icon: Icon(Icons.list),
                 label: Text(
@@ -74,7 +74,7 @@ class _ShowState extends State<Show> {
               padding: const EdgeInsets.all(5.0),
               child: ElevatedButton.icon(
                 onPressed: ()async {
-                  Navigator.pushNamed(context, '/add');
+                  Navigator.pushNamed(context, '/show_orders');
                 },
                 icon: Icon(Icons.list),
                 label: Text(
@@ -95,7 +95,7 @@ class _ShowState extends State<Show> {
               padding: const EdgeInsets.all(5.0),
               child: ElevatedButton.icon(
                 onPressed: ()async {
-                  Navigator.pushNamed(context, '/add');
+                  Navigator.pushNamed(context, '/show_menu');
                 },
                 icon: Icon(Icons.list),
                 label: Text(
@@ -116,7 +116,7 @@ class _ShowState extends State<Show> {
               padding: const EdgeInsets.all(5.0),
               child: ElevatedButton.icon(
                 onPressed: ()async {
-                  Navigator.pushNamed(context, '/add');
+                  Navigator.pushNamed(context, '/show_tables');
                 },
                 icon: Icon(Icons.list),
                 label: Text(
