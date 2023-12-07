@@ -35,4 +35,17 @@ class Reservation{
       additionalRemarks: json['additionalRemarks'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'ddate': ddate,
+      'hhour': hhour,
+      'client': client.toJson(),
+      'table': table.toJson(),
+      'guestNum': guestNum,
+      'additionalRemarks': additionalRemarks,
+    };
+  }
 }

@@ -30,4 +30,14 @@ class Order{
       orderLines: orderLineList,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': this.name,
+      'table': table.toJson(),
+      'reservation': reservation.toJson(),
+      'orderLines': orderLines.map((e) => e.toJson()).toList(),
+    };
+  }
 }

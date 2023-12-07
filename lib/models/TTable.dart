@@ -17,4 +17,12 @@ class TTable{
       size: json['size'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'size': size,
+    };
+  }
 }
