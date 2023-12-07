@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:restaurant_management_app/models/Menu.dart';
 
 const String baseURL ="http://10.147.20.177:8080/menu";
-class MenuController{
+class MenuuController{
   static Future<List<Menu>> getList()async{
     var url=Uri.parse(baseURL);
     final response = await http.get(url);

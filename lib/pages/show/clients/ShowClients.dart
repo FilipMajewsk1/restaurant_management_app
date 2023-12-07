@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/controllers/ClientController.dart';
+import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
 import '../../../models/Client.dart';
 
 class ShowClients extends StatefulWidget{
@@ -9,7 +11,7 @@ class ShowClients extends StatefulWidget{
 }
 
 class _ShowClients extends State<ShowClients> {
-  //TODO .getClientsList
+  Future<List<Client>> clients = ClientController.getList();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,43 @@ class _ShowClients extends State<ShowClients> {
         child: SizedBox(
           width: 350,
           height: 650,
-          //TODO FutureBuilder
+          child: FutureBuilder<List<Client>>(
+              future: clients,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final clientt = snapshot.data!;
+                  return buildClient(clientt);
+                }
+                else {
+                  return (Center(
+                      child:CircularProgressIndicator()));
+                }
+              }
+          ),
         ),
       ),
     );
   }
+
+  Widget buildClient(List<Client> clients) =>
+      ListView.builder(
+        itemCount: clients.length,
+        itemBuilder: (context, index) {
+          final client = clients[index];
+          return ShowEntityCard(
+            name: client.name + " " + client.surname,
+            id: client.id,
+            route: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ShowClient(id: client.id),
+                ),
+              );
+            },
+            deleteFunc: () {
+              ClientController.deleteClient(client.id.toString());
+            },
+          );
+        },
+      );
 }

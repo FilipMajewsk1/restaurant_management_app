@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/controllers/ReservationController.dart';
+import 'package:restaurant_management_app/models/Reservation.dart';
+import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
 
 class ShowReservations extends StatefulWidget{
   const ShowReservations({Key? key}) : super(key: key);
@@ -8,8 +11,7 @@ class ShowReservations extends StatefulWidget{
 }
 
 class _ShowReservations extends State<ShowReservations> {
-  //TODO .getClientsList
-
+  Future<List<Reservation>> reservations = ReservationController.getList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +30,43 @@ class _ShowReservations extends State<ShowReservations> {
         child: SizedBox(
           width: 350,
           height: 650,
-          //TODO FutureBuilder
+          child: FutureBuilder<List<Reservation>>(
+              future: reservations,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final reservationn = snapshot.data!;
+                  return buildReservation(reservationn);
+                }
+                else {
+                  return (Center(
+                      child:CircularProgressIndicator()));
+                }
+              }
+          ),
         ),
       ),
     );
   }
+
+  Widget buildReservation(List<Reservation> reservations) =>
+      ListView.builder(
+        itemCount: reservations.length,
+        itemBuilder: (context, index) {
+          final reservation = reservations[index];
+          return ShowEntityCard(
+            name: reservation.name,
+            id: reservation.id,
+            route: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ShowReservation(id: reservation.id),
+                ),
+              );
+            },
+            deleteFunc: () {
+              ReservationController.deleteReservation(reservation.id.toString());
+            },
+          );
+        },
+      );
 }
