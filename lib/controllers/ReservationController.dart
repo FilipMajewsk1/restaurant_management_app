@@ -5,16 +5,17 @@ import 'package:restaurant_management_app/models/Reservation.dart';
 
 const String baseURL ="http://10.147.20.177:8080/reservations";
 class ReservationController{
-  static Future<List<Reservation>> getList()async{
-    var url=Uri.parse(baseURL);
+  static Future<List<Reservation>> getList() async {
+    var url = Uri.parse(baseURL);
     final response = await http.get(url);
-    final bodyByte = utf8.decode(response.bodyBytes);
-    final body  = json.decode(bodyByte);
-    return body.map<Reservation>(Reservation.fromJson).toList();
+    final body = json.decode(response.body);
+    return body.map<Reservation>((jsonItem) => Reservation.fromJson(jsonItem as Map<String, dynamic>)).toList();
   }
 
+
+
   static Future<Reservation> getReservation(String id)async{
-    var url=Uri.parse(baseURL + id);
+    var url=Uri.parse(baseURL +"/"+ id);
     final response = await http.get(url);
     final bodyByte = utf8.decode(response.bodyBytes);
     final body  = json.decode(bodyByte);
@@ -54,7 +55,7 @@ class ReservationController{
   }
 
   static Future<bool> deleteReservation(String id) async {
-    var url=Uri.parse(baseURL+id);
+    var url=Uri.parse(baseURL+"/"+id);
     final response = await http.delete(url);
 
     if (response.statusCode == 200) {

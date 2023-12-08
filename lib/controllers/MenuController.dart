@@ -5,16 +5,16 @@ import 'package:restaurant_management_app/models/Menu.dart';
 
 const String baseURL ="http://10.147.20.177:8080/menu";
 class MenuuController{
-  static Future<List<Menu>> getList()async{
-    var url=Uri.parse(baseURL);
+  static Future<List<Menu>> getList() async {
+    var url = Uri.parse(baseURL);
     final response = await http.get(url);
-    final bodyByte = utf8.decode(response.bodyBytes);
-    final body  = json.decode(bodyByte);
-    return body.map<Menu>(Menu.fromJson).toList();
+    final body = json.decode(response.body);
+    return body.map<Menu>((jsonItem) => Menu.fromJson(jsonItem as Map<String, dynamic>)).toList();
   }
 
+
   static Future<Menu> getPosition(String id)async{
-    var url=Uri.parse(baseURL + id);
+    var url=Uri.parse(baseURL +"/"+ id);
     final response = await http.get(url);
     final bodyByte = utf8.decode(response.bodyBytes);
     final body  = json.decode(bodyByte);
@@ -50,7 +50,7 @@ class MenuuController{
   }
 
   static Future<bool> deletePosition(String id) async {
-    var url=Uri.parse(baseURL+id);
+    var url=Uri.parse(baseURL+"/"+id);
     final response = await http.delete(url);
 
     if (response.statusCode == 200) {

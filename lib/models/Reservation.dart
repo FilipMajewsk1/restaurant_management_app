@@ -7,8 +7,8 @@ class Reservation{
   String name;
   String ddate;
   String hhour;
-  Client client;
-  TTable table;
+  int client_id;
+  int table_id;
   int guestNum;
   String additionalRemarks;
 
@@ -17,22 +17,22 @@ class Reservation{
     required this.name,
     required this.ddate,
     required this.hhour,
-    required this.client,
-    required this.table,
+    required this.client_id,
+    required this.table_id,
     required this.guestNum,
     required this.additionalRemarks
   });
 
   factory Reservation.fromJson(Map<String, dynamic> json) {
     return Reservation(
-      id: json['id'],
-      name: json['name'],
-      ddate: json['ddate'],
-      hhour: json['hhour'],
-      client: Client.fromJson(json['client']),
-      table: TTable.fromJson(json['table']),
-      guestNum: json['guestNum'],
-      additionalRemarks: json['additionalRemarks'],
+        id: json['id'],
+        name: json['name'],
+        ddate: json['ddate'],
+        hhour: json['hhour'],
+        client_id: json['client_id'],
+        table_id: json['table_id'],
+        guestNum: json['guestNumber'],
+        additionalRemarks: json['additionalRemarks']
     );
   }
 
@@ -42,8 +42,8 @@ class Reservation{
       'name': name,
       'ddate': ddate,
       'hhour': hhour,
-      'client': client.toJson(),
-      'table': table.toJson(),
+      'client': client_id,
+      'table': table_id,
       'guestNum': guestNum,
       'additionalRemarks': additionalRemarks,
     };

@@ -5,16 +5,16 @@ import 'package:restaurant_management_app/models/TTable.dart';
 
 const String baseURL ="http://10.147.20.177:8080/tables";
 class TableController{
-  static Future<List<TTable>> getList()async{
-    var url=Uri.parse(baseURL);
+  static Future<List<TTable>> getList() async {
+    var url = Uri.parse(baseURL);
     final response = await http.get(url);
-    final bodyByte = utf8.decode(response.bodyBytes);
-    final body  = json.decode(bodyByte);
-    return body.map<TTable>(TTable.fromJson).toList();
+    final body = json.decode(response.body);
+    return body.map<TTable>((jsonItem) => TTable.fromJson(jsonItem as Map<String, dynamic>)).toList();
   }
 
+
   static Future<TTable> getTable(String id)async{
-    var url=Uri.parse(baseURL + id);
+    var url=Uri.parse(baseURL +"/"+ id);
     final response = await http.get(url);
     final bodyByte = utf8.decode(response.bodyBytes);
     final body  = json.decode(bodyByte);
@@ -44,7 +44,7 @@ class TableController{
   }
 
   static Future<bool> deleteTable(String id) async {
-    var url=Uri.parse(baseURL+id);
+    var url=Uri.parse(baseURL+"/"+id);
     final response = await http.delete(url);
 
     if (response.statusCode == 200) {

@@ -7,16 +7,16 @@ import 'package:restaurant_management_app/models/OrderLine.dart';
 
 const String baseURL ="http://10.147.20.177:8080/orders";
 class OrderController{
-  static Future<List<Order>> getList()async{
-    var url=Uri.parse(baseURL);
+  static Future<List<Order>> getList() async {
+    var url = Uri.parse(baseURL);
     final response = await http.get(url);
-    final bodyByte = utf8.decode(response.bodyBytes);
-    final body  = json.decode(bodyByte);
-    return body.map<Order>(Order.fromJson).toList();
+    final body = json.decode(response.body);
+    return body.map<Order>((jsonItem) => Order.fromJson(jsonItem as Map<String, dynamic>)).toList();
   }
 
+
   static Future<Order> getOrder(String id)async{
-    var url=Uri.parse(baseURL + id);
+    var url=Uri.parse(baseURL +"/"+ id);
     final response = await http.get(url);
     final bodyByte = utf8.decode(response.bodyBytes);
     final body  = json.decode(bodyByte);
@@ -39,7 +39,7 @@ class OrderController{
         "tableId": tableId,
         "reservationId": reservationId,
         "lines": lines.map((line) => {
-          "position_id": line.position.id,
+          "position_id": line.position_id,
           "quantity": line.quantity
         })
       }),
@@ -53,7 +53,7 @@ class OrderController{
   }
 
   static Future<bool> deleteOrder(String id) async {
-    var url=Uri.parse(baseURL+id);
+    var url=Uri.parse(baseURL+"/"+id);
     final response = await http.delete(url);
 
     if (response.statusCode == 200) {

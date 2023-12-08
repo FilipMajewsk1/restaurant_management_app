@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_management_app/controllers/TableController.dart';
 import 'package:restaurant_management_app/models/TTable.dart';
+import 'package:restaurant_management_app/pages/show/tables/ShowTable.dart';
 import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
 
 class ShowTables extends StatefulWidget{
@@ -58,11 +59,7 @@ class _ShowTables extends State<ShowTables> {
             name: table.name,
             id: table.id,
             route: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ShowTable(id: table.id),
-                ),
-              );
+              ShowTable(id: table.id);
             },
             deleteFunc: () {
               TableController.deleteTable(table.id.toString());

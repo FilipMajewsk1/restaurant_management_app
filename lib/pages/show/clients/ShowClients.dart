@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_management_app/controllers/ClientController.dart';
+import 'package:restaurant_management_app/models/Client.dart';
+import 'package:restaurant_management_app/pages/show/clients/ShowClient.dart';
 import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
-import '../../../models/Client.dart';
+
 
 class ShowClients extends StatefulWidget{
   const ShowClients({Key? key}) : super(key: key);
@@ -58,16 +60,13 @@ class _ShowClients extends State<ShowClients> {
             name: client.name + " " + client.surname,
             id: client.id,
             route: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ShowClient(id: client.id),
-                ),
-              );
+               ShowClient(id: client.id);
             },
             deleteFunc: () {
               ClientController.deleteClient(client.id.toString());
             },
           );
         },
+
       );
 }

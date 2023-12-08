@@ -3,6 +3,8 @@ import 'package:restaurant_management_app/controllers/OrderController.dart';
 import 'package:restaurant_management_app/models/Order.dart';
 import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
 
+import 'ShowOrder.dart';
+
 class ShowOrders extends StatefulWidget{
   const ShowOrders({Key? key}) : super(key: key);
 
@@ -55,13 +57,9 @@ class _ShowOrders extends State<ShowOrders> {
           final order = orders[index];
           return ShowEntityCard(
             name: order.name,
-            id: order.id,
+            id: order.id ?? 0,
             route: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ShowOrder(id: order.id),
-                ),
-              );
+              ShowOrder(id: order.id ?? 0);
             },
             deleteFunc: () {
               OrderController.deleteOrder(order.id.toString());

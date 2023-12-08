@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_management_app/models/Menu.dart';
 import 'package:restaurant_management_app/controllers/MenuController.dart';
+import 'package:restaurant_management_app/pages/show/menu/ShowMenuPosition.dart';
 import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
 
 class ShowMenu extends StatefulWidget{
@@ -58,11 +59,7 @@ class _ShowMenu extends State<ShowMenu> {
             name: position.dishName,
             id: position.id,
             route: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ShowMenuPosition(id: position.id),
-                ),
-              );
+              ShowMenuPosition(id: position.id);
             },
             deleteFunc: () {
               MenuuController.deletePosition(position.id.toString());
