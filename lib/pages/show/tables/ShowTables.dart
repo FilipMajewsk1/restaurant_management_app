@@ -58,8 +58,8 @@ class _ShowTables extends State<ShowTables> {
           return ShowEntityCard(
             name: table.name,
             id: table.id,
-            route: () {
-              ShowTable(id: table.id);
+            route: (int id) {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowTable(id: id)));
             },
             deleteFunc: () {
               TableController.deleteTable(table.id.toString());

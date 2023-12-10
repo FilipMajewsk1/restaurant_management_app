@@ -58,8 +58,8 @@ class _ShowMenu extends State<ShowMenu> {
           return ShowEntityCard(
             name: position.dishName,
             id: position.id,
-            route: () {
-              ShowMenuPosition(id: position.id);
+            route: (int id) {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowMenuPosition(id: id)));
             },
             deleteFunc: () {
               MenuuController.deletePosition(position.id.toString());

@@ -59,8 +59,8 @@ class _ShowClients extends State<ShowClients> {
           return ShowEntityCard(
             name: client.name + " " + client.surname,
             id: client.id,
-            route: () {
-               ShowClient(id: client.id);
+            route: (int id) {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowClient(id: id)));
             },
             deleteFunc: () {
               ClientController.deleteClient(client.id.toString());

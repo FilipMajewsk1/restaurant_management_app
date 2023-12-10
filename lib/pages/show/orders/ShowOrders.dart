@@ -58,8 +58,8 @@ class _ShowOrders extends State<ShowOrders> {
           return ShowEntityCard(
             name: order.name,
             id: order.id ?? 0,
-            route: () {
-              ShowOrder(id: order.id ?? 0);
+            route: (int id) {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowOrder(id: id)));
             },
             deleteFunc: () {
               OrderController.deleteOrder(order.id.toString());

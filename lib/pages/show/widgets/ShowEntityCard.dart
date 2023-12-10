@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+typedef RouteCallback = void Function(int id);
+
 class ShowEntityCard extends StatefulWidget {
 
   final String name;
   final int id;
-  final VoidCallback route;
+  final RouteCallback route;
   final VoidCallback deleteFunc;
 
 
@@ -57,7 +59,7 @@ class _ShowEntityCard extends State<ShowEntityCard> {
                   padding: const EdgeInsets.fromLTRB(10, 3, 20, 0),
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => route(id: widget.id)));
+                      widget.route(widget.id);
                     },
                     icon: Icon(Icons.remove_red_eye),
                     label: Text('Show'),

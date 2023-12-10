@@ -57,8 +57,8 @@ class _ShowReservations extends State<ShowReservations> {
           return ShowEntityCard(
             name: reservation.name,
             id: reservation.id,
-            route: () {
-              ShowReservation(id: reservation.id);
+            route: (int id) {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowReservation(id: id)));
             },
             deleteFunc: () {
               ReservationController.deleteReservation(reservation.id.toString());
