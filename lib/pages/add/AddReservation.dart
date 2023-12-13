@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/controllers/ClientController.dart';
+import 'package:restaurant_management_app/controllers/ReservationController.dart';
+import 'package:restaurant_management_app/controllers/TableController.dart';
+import 'package:restaurant_management_app/models/Client.dart';
+import 'package:restaurant_management_app/models/TTable.dart';
+import 'package:restaurant_management_app/pages/add/ShowEntitiesFromAnotherClassCard.dart';
 
 class AddReservation extends StatefulWidget {
   const AddReservation({Key? key}) : super(key: key);
@@ -11,18 +17,19 @@ class _AddReservationState extends State<AddReservation> {
   TextEditingController nameController = TextEditingController();
   TextEditingController ddateController = TextEditingController();
   TextEditingController hhourController = TextEditingController();
-  TextEditingController clientController = TextEditingController();
-  TextEditingController tableController = TextEditingController();
   TextEditingController guestNumController = TextEditingController();
   TextEditingController additionalRemarksController = TextEditingController();
 
   String name = "";
   String ddate = "";
   String hhour = "";
-  String client = "";
-  String table = "";
+  Client? selectedClient;
+  TTable? selectedTable;
   int? guestNum;
   String additionalRemarks = "";
+
+  Future<List<Client>> clients = ClientController.getList();
+  Future<List<TTable>> tables = TableController.getList();
 
   @override
   Widget build(BuildContext context) {
@@ -184,99 +191,6 @@ class _AddReservationState extends State<AddReservation> {
                   ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 20, 250, 5),
-                  child: Text(
-                    "Client",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: clientController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter client',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (clientController.text != "") {
-                                client = clientController.text;
-                              }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 20, 250, 5),
-                  child: Text(
-                    "Table",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: tableController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter table',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (tableController.text != "") {
-                                table = tableController.text;
-                              }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
 
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 20, 185, 5),
@@ -373,24 +287,86 @@ class _AddReservationState extends State<AddReservation> {
                 ),
 
                 Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 260, 5),
+                  child: Text(
+                    "Client",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 350,
+                  height: 250,
+                  child: FutureBuilder<List<Client>>(
+                      future: clients,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final clientt = snapshot.data!;
+                          return buildClient(clientt);
+                        }
+                        else {
+                          return (Center(
+                              child:CircularProgressIndicator()));
+                        }
+                      }
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 260, 5),
+                  child: Text(
+                    "Table",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 350,
+                  height: 250,
+                  child: FutureBuilder<List<TTable>>(
+                      future: tables,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final tablee = snapshot.data!;
+                          return buildTable(tablee);
+                        }
+                        else {
+                          return (Center(
+                              child:CircularProgressIndicator()));
+                        }
+                      }
+                  ),
+                ),
+
+
+                Padding(
                   padding: const EdgeInsets.all(25),
                   child: ElevatedButton.icon(
                     onPressed: () {
                       if (nameController.text != ""
                           &&ddateController.text != ""
                           && hhourController.text != ""
-                          && clientController.text != ""
-                          && tableController.text != ""
-                          && additionalRemarksController.text != "") {
+                          && additionalRemarksController.text != ""
+                          && guestNumController.text != "") {
                         name = nameController.text;
                         ddate = ddateController.text;
                         hhour = hhourController.text;
-                        client = clientController.text;
-                        table = tableController.text;
+                        guestNum = int.tryParse(guestNumController.text);
                         additionalRemarks = additionalRemarksController.text;
                       }
-                      if(name != "") {
+                      if(name != "" &&
+                          ddate != "" &&
+                          hhour != "" &&
+                          guestNum != null &&
+                          additionalRemarks != "" &&
+                          selectedClient != null &&
+                          selectedTable != null) {
 
+                        ReservationController.addReservation(name, ddate, hhour, selectedClient!.id, selectedTable!.id, guestNum!, additionalRemarks);
                         Navigator.pop(context);
                       }
                     },
@@ -415,4 +391,52 @@ class _AddReservationState extends State<AddReservation> {
         )
     );
   }
+
+  void selectClient(Client client) {
+    setState(() {
+      if (selectedClient == client) {
+        selectedClient = null; // Deselect if the same client is selected again
+      } else {
+        selectedClient = client;
+      }
+    });
+  }
+
+  void selectTable(TTable table) {
+    setState(() {
+      if (selectedTable == table) {
+        selectedTable = null; // Deselect if the same table is selected again
+      } else {
+        selectedTable = table;
+      }
+    });
+  }
+
+  Widget buildClient(List<Client> clients) =>
+      ListView.builder(
+        itemCount: clients.length,
+        itemBuilder: (context, index) {
+          final client = clients[index];
+          return ShowEntitiesFromAnotherClassCard(
+            name: client.name + " " + client.surname,
+            id: client.id,
+            isSelected: selectedClient == client,
+            onSelect: () => selectClient(client),
+          );
+        },
+      );
+
+  Widget buildTable(List<TTable> tables) =>
+      ListView.builder(
+        itemCount: tables.length,
+        itemBuilder: (context, index) {
+          final table = tables[index];
+          return ShowEntitiesFromAnotherClassCard(
+            name: table.name,
+            id: table.id,
+            isSelected: selectedTable == table,
+            onSelect: () => selectTable(table),
+          );
+        },
+      );
 }

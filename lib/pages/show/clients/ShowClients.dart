@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_management_app/controllers/ClientController.dart';
 import 'package:restaurant_management_app/models/Client.dart';
 import 'package:restaurant_management_app/pages/show/clients/ShowClient.dart';
-import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
+import 'package:restaurant_management_app/widgets/ShowEntityCard.dart';
 
 
 class ShowClients extends StatefulWidget{
@@ -62,7 +62,7 @@ class _ShowClients extends State<ShowClients> {
             route: (int id) {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowClient(id: id)));
             },
-            deleteFunc: () {
+            deleteFunc: (int id) {
               ClientController.deleteClient(client.id.toString());
             },
           );

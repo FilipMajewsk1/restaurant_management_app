@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/controllers/TableController.dart';
 
 class AddTable extends StatefulWidget {
   const AddTable({Key? key}) : super(key: key);
@@ -130,11 +131,13 @@ class _AddTableState extends State<AddTable> {
                   padding: const EdgeInsets.all(50),
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      if (nameController.text != "") {
+                      if (nameController.text != ""
+                          && sizeController.text != "" ) {
                         name = nameController.text;
+                        size = int.tryParse(sizeController.text);
                       }
                       if(name != "") {
-
+                        TableController.addTable(name, size!);
                         Navigator.pop(context);
                       }
                     },

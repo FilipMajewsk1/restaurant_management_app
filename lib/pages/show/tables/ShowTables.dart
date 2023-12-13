@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_management_app/controllers/TableController.dart';
 import 'package:restaurant_management_app/models/TTable.dart';
 import 'package:restaurant_management_app/pages/show/tables/ShowTable.dart';
-import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
+import 'package:restaurant_management_app/widgets/ShowEntityCard.dart';
 
 class ShowTables extends StatefulWidget{
   const ShowTables({Key? key}) : super(key: key);
@@ -61,7 +61,7 @@ class _ShowTables extends State<ShowTables> {
             route: (int id) {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowTable(id: id)));
             },
-            deleteFunc: () {
+            deleteFunc: (int id) {
               TableController.deleteTable(table.id.toString());
             },
           );

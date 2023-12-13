@@ -3,6 +3,7 @@ import 'package:restaurant_management_app/pages/add/AddClient.dart';
 import 'package:restaurant_management_app/pages/Home.dart';
 import 'package:restaurant_management_app/pages/add/Add.dart';
 import 'package:restaurant_management_app/pages/add/AddMenuPosition.dart';
+import 'package:restaurant_management_app/pages/add/AddOrder.dart';
 import 'package:restaurant_management_app/pages/add/AddReservation.dart';
 import 'package:restaurant_management_app/pages/add/AddTable.dart';
 import 'package:restaurant_management_app/pages/show/Show.dart';
@@ -22,7 +23,7 @@ void main() => runApp(MaterialApp(
     '/add_table': (context) => AddTable(),
     '/add_menu_position': (context) => AddMenuPosition(),
     '/add_reservation': (context) => AddReservation(),
-    '/add_order': (context) => Add(),
+    '/add_order': (context) => AddOrder(),
     '/show_clients': (context) => ShowClients(),
     '/show_tables': (context) => ShowTables(),
     '/show_menu': (context) => ShowMenu(),

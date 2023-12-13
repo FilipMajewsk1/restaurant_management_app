@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/controllers/MenuController.dart';
 
 class AddMenuPosition extends StatefulWidget {
   const AddMenuPosition({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
 
   String dishName = "";
   String dishDescription = "";
-  double? price;
+  int? price;
   String allergens = "";
 
   @override
@@ -155,7 +156,7 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                           onPressed: (){
                             setState(() {
                               if (priceController.text != "") {
-                                price = double.tryParse(priceController.text);
+                                price = int.tryParse(priceController.text);
                               }
                             });
                           },
@@ -222,15 +223,16 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                     onPressed: () {
                       if (dishNameController.text != ""
                           && dishDescriptionController.text != ""
-                          && allergensController.text != "") {
+                          && allergensController.text != "" && priceController.text != "") {
                         dishName = dishNameController.text;
                         dishDescription = dishDescriptionController.text;
                         allergens = allergensController.text;
+                        price = int.tryParse(priceController.text);
                       }
                       if(dishName != ""
                           && dishDescription != ""
-                          && allergens != "" ){
-
+                          && allergens != "" && price != null){
+                        //MenuuController.addPosition(dishName, dishDescription, price!, allergens, section)
                         Navigator.pop(context);
                       }
                     },

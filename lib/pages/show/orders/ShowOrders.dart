@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_management_app/controllers/OrderController.dart';
 import 'package:restaurant_management_app/models/Order.dart';
-import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
+import 'package:restaurant_management_app/widgets/ShowEntityCard.dart';
 
 import 'ShowOrder.dart';
 
@@ -61,7 +61,7 @@ class _ShowOrders extends State<ShowOrders> {
             route: (int id) {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowOrder(id: id)));
             },
-            deleteFunc: () {
+            deleteFunc: (int id) {
               OrderController.deleteOrder(order.id.toString());
             },
           );

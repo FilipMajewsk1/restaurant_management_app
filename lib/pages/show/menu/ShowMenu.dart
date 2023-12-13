@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_management_app/models/Menu.dart';
 import 'package:restaurant_management_app/controllers/MenuController.dart';
 import 'package:restaurant_management_app/pages/show/menu/ShowMenuPosition.dart';
-import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
+import 'package:restaurant_management_app/widgets/ShowEntityCard.dart';
 
 class ShowMenu extends StatefulWidget{
   const ShowMenu({Key? key}) : super(key: key);
@@ -61,7 +61,7 @@ class _ShowMenu extends State<ShowMenu> {
             route: (int id) {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowMenuPosition(id: id)));
             },
-            deleteFunc: () {
+            deleteFunc: (int id) {
               MenuuController.deletePosition(position.id.toString());
             },
           );

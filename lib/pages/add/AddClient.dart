@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/controllers/ClientController.dart';
 
 class AddClient extends StatefulWidget {
   const AddClient({Key? key}) : super(key: key);
@@ -234,7 +235,7 @@ class _AddClientState extends State<AddClient> {
                    && surname != ""
                    && email != ""
                    && phoneNum != "") {
-
+                  ClientController.addClient(name, surname, email, phoneNum);
                   Navigator.pop(context);
                 }
               },

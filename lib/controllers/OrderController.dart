@@ -26,8 +26,8 @@ class OrderController{
 
   static Future<bool> addOrder(
       String orderName,
-      int tableId,
-      int reservationId,
+      int table_id,
+      int reservation_id,
       List<OrderLine> lines) async {
     final response = await http.post(
       Uri.parse(baseURL),
@@ -35,13 +35,13 @@ class OrderController{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
-        "orderName": orderName,
-        "tableId": tableId,
-        "reservationId": reservationId,
+        "name": orderName,
+        "table_id": table_id,
+        "reservation_id": reservation_id,
         "lines": lines.map((line) => {
           "position_id": line.position_id,
           "quantity": line.quantity
-        })
+        }).toList(),
       }),
     );
 

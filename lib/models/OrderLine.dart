@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:restaurant_management_app/models/Menu.dart';
-import 'package:restaurant_management_app/models/Order.dart';
-
 class OrderLine {
   int? id;
   int position_id;

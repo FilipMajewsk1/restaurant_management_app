@@ -7,7 +7,7 @@ class ShowEntityCard extends StatefulWidget {
   final String name;
   final int id;
   final RouteCallback route;
-  final VoidCallback deleteFunc;
+  final RouteCallback deleteFunc;
 
 
   ShowEntityCard({required this.name, required this.id, required this.route, required this.deleteFunc});
@@ -73,7 +73,7 @@ class _ShowEntityCard extends State<ShowEntityCard> {
                   padding: const EdgeInsets.fromLTRB(10, 0, 20, 0),
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      deleteFunc(widget.id.toString());
+                      widget.deleteFunc(widget.id);
                       Navigator.pop(context);
                     },
                     icon:Icon(Icons.delete),

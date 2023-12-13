@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_management_app/controllers/ReservationController.dart';
 import 'package:restaurant_management_app/models/Reservation.dart';
 import 'package:restaurant_management_app/pages/show/reservations/ShowReservation.dart';
-import 'package:restaurant_management_app/pages/show/widgets/ShowEntityCard.dart';
+import 'package:restaurant_management_app/widgets/ShowEntityCard.dart';
 
 class ShowReservations extends StatefulWidget{
   const ShowReservations({Key? key}) : super(key: key);
@@ -60,7 +60,7 @@ class _ShowReservations extends State<ShowReservations> {
             route: (int id) {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowReservation(id: id)));
             },
-            deleteFunc: () {
+            deleteFunc: (int id) {
               ReservationController.deleteReservation(reservation.id.toString());
             },
           );
