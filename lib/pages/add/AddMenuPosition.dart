@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_management_app/controllers/MenuController.dart';
+import 'package:restaurant_management_app/models/MenuSections.dart';
+import 'package:restaurant_management_app/pages/add/ShowMenuSectionsCard.dart';
 
 class AddMenuPosition extends StatefulWidget {
   const AddMenuPosition({Key? key}) : super(key: key);
@@ -17,6 +19,8 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
   String dishDescription = "";
   int? price;
   String allergens = "";
+  MenuSections? selectedSection;
+  List<MenuSections> sections = [MenuSections.Appetizer, MenuSections.Dessert, MenuSections.MainCourse, MenuSections.Soup];
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +84,22 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                       ),
                     ],
                   ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 45, 240, 5),
+                  child: Text(
+                    "Section",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                    width: 350,
+                    height: 200,
+                    child: buildSection(sections),
                 ),
 
                 Padding(
@@ -231,8 +251,10 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                       }
                       if(dishName != ""
                           && dishDescription != ""
-                          && allergens != "" && price != null){
-                        //MenuuController.addPosition(dishName, dishDescription, price!, allergens, section)
+                          && allergens != ""
+                          && price != null
+                          && selectedSection != null){
+                        MenuuController.addPosition(dishName, dishDescription, price!, allergens, selectedSection!.name);
                         Navigator.pop(context);
                       }
                     },
@@ -257,4 +279,27 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
         )
     );
   }
+
+  void selectSection(MenuSections section) {
+    setState(() {
+      if (selectedSection == section) {
+        selectedSection = null;
+      } else {
+        selectedSection = section;
+      }
+    });
+  }
+
+  Widget buildSection(List<MenuSections> sections) =>
+      ListView.builder(
+        itemCount: sections.length,
+        itemBuilder: (context, index) {
+          final sectionn = sections[index];
+          return ShowMenuSectionsCard(
+            name: sectionn.name,
+            isSelected: selectedSection == sectionn,
+            onSelect: () => selectSection(sectionn),
+          );
+        },
+      );
 }

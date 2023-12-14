@@ -103,13 +103,13 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                   ),
                 ),
                 SizedBox(
-                  height: 110,
+                  height: 240,
                   width: 300,
                   child: Card(
                     child: Center(
                       child: SizedBox(
-                        width: 200,
-                        height: 60,
+                        width: 270,
+                        height: 150,
                         child: Card(
                           color: Colors.green[900],
                           child: Center(
@@ -117,12 +117,16 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                               future: futurePosition,
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
-                                  return Text(snapshot.data!.dishDescription,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12,
-                                        color: Colors.white,
-                                      ));
+                                  return Padding(
+                                    padding: const EdgeInsets.fromLTRB(10,0,10,0),
+                                    child: Text(snapshot.data!.dishDescription,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                        )),
+                                  );
                                 } else {
                                   return (Center(
                                       child:CircularProgressIndicator()));                                }

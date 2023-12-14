@@ -249,7 +249,6 @@ class _AddOrderState extends State<AddOrder> {
                           selectedReservation != null &&
                           selectedTable != null &&
                           lines.isNotEmpty) {
-
                         OrderController.addOrder(
                             nameController.text,
                             selectedTable!.id,
