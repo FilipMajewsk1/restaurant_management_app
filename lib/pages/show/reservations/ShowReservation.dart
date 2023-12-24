@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/ClientController.dart';
 import 'package:restaurant_management_app/controllers/ReservationController.dart';
 import 'package:restaurant_management_app/controllers/TableController.dart';
@@ -19,6 +20,7 @@ class ShowReservation extends StatefulWidget{
 }
 
 class _ShowReservationState extends State<ShowReservation> {
+  final ThemeManager _themeManager = ThemeManager();
 
   late Future<Reservation> futureReservation;
   late Reservation reservation;
@@ -33,6 +35,7 @@ class _ShowReservationState extends State<ShowReservation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: FutureBuilder<Reservation>(
           future: futureReservation,
@@ -63,6 +66,7 @@ class _ShowReservationState extends State<ShowReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -70,6 +74,7 @@ class _ShowReservationState extends State<ShowReservation> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,
@@ -106,6 +111,7 @@ class _ShowReservationState extends State<ShowReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -113,6 +119,7 @@ class _ShowReservationState extends State<ShowReservation> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,
@@ -149,6 +156,7 @@ class _ShowReservationState extends State<ShowReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -156,6 +164,7 @@ class _ShowReservationState extends State<ShowReservation> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,
@@ -192,6 +201,7 @@ class _ShowReservationState extends State<ShowReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -199,6 +209,7 @@ class _ShowReservationState extends State<ShowReservation> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,
@@ -246,6 +257,7 @@ class _ShowReservationState extends State<ShowReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -253,6 +265,7 @@ class _ShowReservationState extends State<ShowReservation> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,

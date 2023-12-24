@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/models/Menu.dart';
 import 'package:restaurant_management_app/controllers/MenuController.dart';
 import 'package:restaurant_management_app/pages/show/menu/ShowMenuPosition.dart';
@@ -12,11 +13,14 @@ class ShowMenu extends StatefulWidget{
 }
 
 class _ShowMenu extends State<ShowMenu> {
+  final ThemeManager _themeManager = ThemeManager();
+
   Future<List<Menu>> positions = MenuuController.getList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: Text(
           "Menu",

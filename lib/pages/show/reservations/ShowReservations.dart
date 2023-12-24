@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/ReservationController.dart';
 import 'package:restaurant_management_app/models/Reservation.dart';
 import 'package:restaurant_management_app/pages/show/reservations/ShowReservation.dart';
@@ -12,10 +13,12 @@ class ShowReservations extends StatefulWidget{
 }
 
 class _ShowReservations extends State<ShowReservations> {
+  final ThemeManager _themeManager = ThemeManager();
   Future<List<Reservation>> reservations = ReservationController.getList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: Text(
           "Reservations",

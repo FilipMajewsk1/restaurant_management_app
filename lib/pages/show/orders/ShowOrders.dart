@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/OrderController.dart';
 import 'package:restaurant_management_app/models/Order.dart';
 import 'package:restaurant_management_app/widgets/ShowEntityCard.dart';
@@ -13,10 +14,12 @@ class ShowOrders extends StatefulWidget{
 }
 
 class _ShowOrders extends State<ShowOrders> {
+  final ThemeManager _themeManager = ThemeManager();
   Future<List<Order>> orders = OrderController.getList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: Text(
           "Orders",

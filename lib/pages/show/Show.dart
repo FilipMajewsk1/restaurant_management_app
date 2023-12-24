@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 
 class Show extends StatefulWidget {
   const Show({Key? key}) : super(key: key);
@@ -8,9 +9,11 @@ class Show extends StatefulWidget {
 }
 
 class _ShowState extends State<Show> {
+  final ThemeManager _themeManager = ThemeManager();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: Text(
           "Show list of entities",

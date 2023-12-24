@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 
 class ShowEntitiesFromAnotherClassCard extends StatefulWidget {
 
@@ -20,6 +21,7 @@ class ShowEntitiesFromAnotherClassCard extends StatefulWidget {
   State<ShowEntitiesFromAnotherClassCard> createState() => _ShowEntitiesFromAnotherClassCard(id: id, name: name);
 }
 class _ShowEntitiesFromAnotherClassCard extends State<ShowEntitiesFromAnotherClassCard> {
+  final ThemeManager _themeManager = ThemeManager();
   String name;
   int? id;
 
@@ -32,6 +34,7 @@ class _ShowEntitiesFromAnotherClassCard extends State<ShowEntitiesFromAnotherCla
       width: 350,
       height: 110,
       child: Card(
+        color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
         child: Row(
           children: [
             Expanded(

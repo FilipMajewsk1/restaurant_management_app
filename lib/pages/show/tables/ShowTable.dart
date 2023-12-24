@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/TableController.dart';
 import 'package:restaurant_management_app/models/TTable.dart';
 
@@ -14,6 +15,7 @@ class ShowTable extends StatefulWidget{
 }
 
 class _ShowTableState extends State<ShowTable> {
+  final ThemeManager _themeManager = ThemeManager();
 
   late Future<TTable> futureTable;
   late TTable table;
@@ -26,6 +28,7 @@ class _ShowTableState extends State<ShowTable> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: FutureBuilder<TTable>(
         future: futureTable,
@@ -56,6 +59,7 @@ class _ShowTableState extends State<ShowTable> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -63,6 +67,7 @@ class _ShowTableState extends State<ShowTable> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,

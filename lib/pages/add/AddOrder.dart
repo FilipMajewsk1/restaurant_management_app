@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/MenuController.dart';
 import 'package:restaurant_management_app/controllers/OrderController.dart';
 import 'package:restaurant_management_app/controllers/ReservationController.dart';
@@ -17,6 +18,7 @@ class AddOrder extends StatefulWidget {
   State<AddOrder> createState() => _AddOrderState();
 }
 class _AddOrderState extends State<AddOrder> {
+  final ThemeManager _themeManager = ThemeManager();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
@@ -36,6 +38,7 @@ class _AddOrderState extends State<AddOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
         appBar: AppBar(
           title: Text(
             "Add Order",
@@ -59,6 +62,7 @@ class _AddOrderState extends State<AddOrder> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -106,6 +110,7 @@ class _AddOrderState extends State<AddOrder> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -134,6 +139,7 @@ class _AddOrderState extends State<AddOrder> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -162,6 +168,7 @@ class _AddOrderState extends State<AddOrder> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -177,6 +184,7 @@ class _AddOrderState extends State<AddOrder> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -204,6 +212,7 @@ class _AddOrderState extends State<AddOrder> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),

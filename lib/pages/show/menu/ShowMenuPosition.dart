@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/MenuController.dart';
 import 'package:restaurant_management_app/models/Menu.dart';
 
@@ -14,6 +15,7 @@ class ShowMenuPosition extends StatefulWidget{
 }
 
 class _ShowMenuPositionState extends State<ShowMenuPosition> {
+  final ThemeManager _themeManager = ThemeManager();
 
   late Future<Menu> futurePosition;
   late Menu position;
@@ -26,6 +28,7 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: FutureBuilder<Menu>(
           future: futurePosition,
@@ -56,6 +59,7 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -63,6 +67,7 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,
@@ -99,6 +104,7 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -106,6 +112,7 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                   height: 240,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 270,
@@ -146,6 +153,7 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -153,6 +161,7 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,
@@ -189,6 +198,7 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -196,6 +206,7 @@ class _ShowMenuPositionState extends State<ShowMenuPosition> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,

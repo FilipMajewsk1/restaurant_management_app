@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/ClientController.dart';
 import 'package:restaurant_management_app/models/Client.dart';
 import 'package:restaurant_management_app/pages/show/clients/ShowClient.dart';
@@ -13,11 +14,14 @@ class ShowClients extends StatefulWidget{
 }
 
 class _ShowClients extends State<ShowClients> {
+  final ThemeManager _themeManager = ThemeManager();
+
   Future<List<Client>> clients = ClientController.getList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: Text(
           "Clients",

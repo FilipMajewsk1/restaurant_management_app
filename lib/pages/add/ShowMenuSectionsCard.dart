@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 
 class ShowMenuSectionsCard extends StatefulWidget {
 
@@ -18,6 +19,8 @@ class ShowMenuSectionsCard extends StatefulWidget {
   State<ShowMenuSectionsCard> createState() => _ShowMenuSectionsCard( name: name);
 }
 class _ShowMenuSectionsCard extends State<ShowMenuSectionsCard> {
+  final ThemeManager _themeManager = ThemeManager();
+
   String name;
 
   _ShowMenuSectionsCard({required this.name});
@@ -29,6 +32,7 @@ class _ShowMenuSectionsCard extends State<ShowMenuSectionsCard> {
       width: 350,
       height: 110,
       child: Card(
+        color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
         child: Row(
           children: [
             Expanded(

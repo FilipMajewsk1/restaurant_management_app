@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/ClientController.dart';
 
 class AddClient extends StatefulWidget {
@@ -8,6 +9,8 @@ class AddClient extends StatefulWidget {
   State<AddClient> createState() => _AddClientState();
 }
 class _AddClientState extends State<AddClient> {
+  final ThemeManager _themeManager = ThemeManager();
+
   TextEditingController nameController = TextEditingController();
   TextEditingController surnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -22,6 +25,7 @@ class _AddClientState extends State<AddClient> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
         appBar: AppBar(
         title: Text(
         "Add Client",
@@ -45,6 +49,7 @@ class _AddClientState extends State<AddClient> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
+                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
               ),
             ),
           ),
@@ -90,6 +95,7 @@ class _AddClientState extends State<AddClient> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
+                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
               ),
             ),
           ),
@@ -135,6 +141,7 @@ class _AddClientState extends State<AddClient> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
+                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
               ),
             ),
           ),
@@ -180,6 +187,7 @@ class _AddClientState extends State<AddClient> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
+                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
               ),
             ),
           ),

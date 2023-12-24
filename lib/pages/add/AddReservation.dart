@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/ClientController.dart';
 import 'package:restaurant_management_app/controllers/ReservationController.dart';
 import 'package:restaurant_management_app/controllers/TableController.dart';
@@ -13,6 +14,7 @@ class AddReservation extends StatefulWidget {
   State<AddReservation> createState() => _AddReservationState();
 }
 class _AddReservationState extends State<AddReservation> {
+  final ThemeManager _themeManager = ThemeManager();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController ddateController = TextEditingController();
@@ -34,6 +36,7 @@ class _AddReservationState extends State<AddReservation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
         appBar: AppBar(
           title: Text(
             "Add Reservation",
@@ -57,6 +60,7 @@ class _AddReservationState extends State<AddReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -104,6 +108,7 @@ class _AddReservationState extends State<AddReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -151,6 +156,7 @@ class _AddReservationState extends State<AddReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -199,6 +205,7 @@ class _AddReservationState extends State<AddReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -246,6 +253,7 @@ class _AddReservationState extends State<AddReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -293,6 +301,7 @@ class _AddReservationState extends State<AddReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -321,6 +330,7 @@ class _AddReservationState extends State<AddReservation> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/MenuController.dart';
 import 'package:restaurant_management_app/controllers/OrderController.dart';
 import 'package:restaurant_management_app/controllers/ReservationController.dart';
@@ -22,6 +23,7 @@ class ShowOrder extends StatefulWidget{
 }
 
 class _ShowOrderState extends State<ShowOrder> {
+  final ThemeManager _themeManager = ThemeManager();
 
   late Future<Order> futureOrder;
   late Future<TTable> futureTable;
@@ -37,6 +39,7 @@ class _ShowOrderState extends State<ShowOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: FutureBuilder<Order>(
           future: futureOrder,
@@ -67,6 +70,7 @@ class _ShowOrderState extends State<ShowOrder> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -74,6 +78,7 @@ class _ShowOrderState extends State<ShowOrder> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,
@@ -121,6 +126,7 @@ class _ShowOrderState extends State<ShowOrder> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -128,6 +134,7 @@ class _ShowOrderState extends State<ShowOrder> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,
@@ -175,6 +182,7 @@ class _ShowOrderState extends State<ShowOrder> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),

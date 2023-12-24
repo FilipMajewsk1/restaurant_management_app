@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 
 class ShowOrderlineCard extends StatefulWidget {
 
@@ -12,7 +13,7 @@ class ShowOrderlineCard extends StatefulWidget {
 }
 
 class _ShowOrderlineCard extends State<ShowOrderlineCard> {
-
+  final ThemeManager _themeManager = ThemeManager();
   String positionName;
   int quantity;
 

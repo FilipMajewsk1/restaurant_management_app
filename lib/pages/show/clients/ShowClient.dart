@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/ClientController.dart';
 import 'package:restaurant_management_app/models/Client.dart';
 
@@ -14,6 +15,7 @@ class ShowClient extends StatefulWidget{
 }
 
 class _ShowClientState extends State<ShowClient> {
+  final ThemeManager _themeManager = ThemeManager();
 
   late Future<Client> futureClient;
   late Client client;
@@ -26,6 +28,7 @@ class _ShowClientState extends State<ShowClient> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: FutureBuilder<Client>(
           future: futureClient,
@@ -56,6 +59,7 @@ class _ShowClientState extends State<ShowClient> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -63,6 +67,7 @@ class _ShowClientState extends State<ShowClient> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                       child: Center(
                         child: SizedBox(
                           width: 200,
@@ -99,6 +104,7 @@ class _ShowClientState extends State<ShowClient> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -106,6 +112,7 @@ class _ShowClientState extends State<ShowClient> {
                   height: 110,
                   width: 300,
                   child: Card(
+                    color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
                     child: Center(
                       child: SizedBox(
                         width: 200,

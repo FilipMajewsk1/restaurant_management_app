@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/MenuController.dart';
 import 'package:restaurant_management_app/models/MenuSections.dart';
 import 'package:restaurant_management_app/pages/add/ShowMenuSectionsCard.dart';
@@ -10,6 +11,7 @@ class AddMenuPosition extends StatefulWidget {
   State<AddMenuPosition> createState() => _AddMenuPositionState();
 }
 class  _AddMenuPositionState extends State<AddMenuPosition> {
+  final ThemeManager _themeManager = ThemeManager();
   TextEditingController dishNameController = TextEditingController();
   TextEditingController dishDescriptionController = TextEditingController();
   TextEditingController priceController = TextEditingController();
@@ -25,6 +27,7 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
         appBar: AppBar(
           title: Text(
             "Add Menu Position",
@@ -48,6 +51,7 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -93,6 +97,7 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -109,6 +114,7 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -154,6 +160,7 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -199,6 +206,7 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),

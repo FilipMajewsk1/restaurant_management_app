@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/TableController.dart';
 
 class AddTable extends StatefulWidget {
@@ -8,6 +9,7 @@ class AddTable extends StatefulWidget {
   State<AddTable> createState() => _AddTableState();
 }
 class _AddTableState extends State<AddTable> {
+  final ThemeManager _themeManager = ThemeManager();
   TextEditingController nameController = TextEditingController();
   TextEditingController sizeController = TextEditingController();
 
@@ -17,6 +19,7 @@ class _AddTableState extends State<AddTable> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
         appBar: AppBar(
           title: Text(
             "Add Table",
@@ -40,6 +43,7 @@ class _AddTableState extends State<AddTable> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),
@@ -87,6 +91,7 @@ class _AddTableState extends State<AddTable> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
                     ),
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 
 typedef RouteCallback = void Function(int id);
 
@@ -16,6 +17,7 @@ class ShowEntityCard extends StatefulWidget {
   State<ShowEntityCard> createState() => _ShowEntityCard(id: id, name: name, route: route, deleteFunc: deleteFunc);
 }
 class _ShowEntityCard extends State<ShowEntityCard> {
+  final ThemeManager _themeManager = ThemeManager();
   String name;
   int? id;
   Function route;
@@ -29,6 +31,7 @@ class _ShowEntityCard extends State<ShowEntityCard> {
       width: 350,
       height: 110,
       child: Card(
+        color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
         child: Row(
           children: [
             Expanded(

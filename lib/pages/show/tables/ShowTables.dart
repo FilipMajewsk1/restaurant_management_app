@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_management_app/ThemeManager.dart';
 import 'package:restaurant_management_app/controllers/TableController.dart';
 import 'package:restaurant_management_app/models/TTable.dart';
 import 'package:restaurant_management_app/pages/show/tables/ShowTable.dart';
@@ -12,11 +13,13 @@ class ShowTables extends StatefulWidget{
 }
 
 class _ShowTables extends State<ShowTables> {
+  final ThemeManager _themeManager = ThemeManager();
   Future<List<TTable>> tables = TableController.getList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
       appBar: AppBar(
         title: Text(
           "Tables",
