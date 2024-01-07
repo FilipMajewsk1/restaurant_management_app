@@ -1,6 +1,7 @@
 # restaurant_management_app
 
 1.Opis aplikacji
+
 Aplikacja umożliwia zarządzanie zamówieniami, rezerwacjami, klientami, stołami oraz daniami w menu.
 
 2.Zakres funkcjonalny
@@ -12,6 +13,7 @@ Aplikacja umożliwia zarządzanie zamówieniami, rezerwacjami, klientami, stoła
   - Zmiana motywów (tryb ciemny i jasny)
 
 3.Strona techniczna
+
 Aplikacja ta działa na urządzeniach mobilnych oraz jako aplikacja web. Łączy się z api Springboot. Api oraz baza danych PostgreSQL jest hostowana w Azure.
 
 4. Punkty zrealizowane:
