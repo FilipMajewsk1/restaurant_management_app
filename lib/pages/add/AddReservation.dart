@@ -33,6 +33,11 @@ class _AddReservationState extends State<AddReservation> {
   Future<List<Client>> clients = ClientController.getList();
   Future<List<TTable>> tables = TableController.getList();
 
+  final _nameKey = GlobalKey<FormState>();
+  final _dateKey = GlobalKey<FormState>();
+  final _hourKey = GlobalKey<FormState>();
+  final _guestNumKey = GlobalKey<FormState>();
+  final _remarksKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,38 +71,57 @@ class _AddReservationState extends State<AddReservation> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: nameController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter name',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (nameController.text != "") {
-                                name = nameController.text;
+                  child: Form(
+                    key: _nameKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: nameController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter name',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_nameKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  name = nameController.text;
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter"),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors
+                                  .green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(
+                                  100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -114,38 +138,59 @@ class _AddReservationState extends State<AddReservation> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: ddateController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter date',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (ddateController.text != "") {
-                                ddate = ddateController.text;
+                  child: Form(
+                    key: _dateKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: ddateController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter date',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
+                              } else if (!RegExp(r'^[0-9-]+$').hasMatch(value)) {
+                                return 'Enter only numbers and -';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_dateKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  ddate = ddateController.text;
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter"),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors
+                                  .green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(
+                                  100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -162,38 +207,59 @@ class _AddReservationState extends State<AddReservation> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: hhourController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter hour',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (hhourController.text != "") {
-                                hhour = hhourController.text;
+                  child: Form(
+                    key: _hourKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: hhourController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter hour',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
+                              } else if (!RegExp(r'^[0-9:]+$').hasMatch(value)) {
+                                return 'Enter only numbers and :';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_hourKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  hhour = hhourController.text;
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter"),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors
+                                  .green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(
+                                  100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -211,38 +277,59 @@ class _AddReservationState extends State<AddReservation> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: guestNumController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter guest number',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (guestNumController.text != "") {
-                                guestNum = int.tryParse(guestNumController.text);
+                  child: Form(
+                    key: _guestNumKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: guestNumController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter guest number',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
+                              } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                return 'Enter only numbers';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_guestNumKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  guestNum = int.tryParse(guestNumController.text);
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter"),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors
+                                  .green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(
+                                  100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -259,38 +346,57 @@ class _AddReservationState extends State<AddReservation> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: additionalRemarksController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter additional remarks',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (additionalRemarksController.text != "") {
-                                additionalRemarks = additionalRemarksController.text;
+                  child: Form(
+                    key: _remarksKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: additionalRemarksController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter additional remarks',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_remarksKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  additionalRemarks = additionalRemarksController.text;
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter"),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors
+                                  .green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(
+                                  100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 

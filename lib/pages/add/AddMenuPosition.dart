@@ -24,6 +24,10 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
   MenuSections? selectedSection;
   List<MenuSections> sections = [MenuSections.Appetizer, MenuSections.Dessert, MenuSections.MainCourse, MenuSections.Soup];
 
+  final _nameKey = GlobalKey<FormState>();
+  final _descriptionKey = GlobalKey<FormState>();
+  final _priceKey = GlobalKey<FormState>();
+  final _allergensKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,36 +61,55 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: dishNameController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText:'Enter name',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10,15,0,0),
-                        child: ElevatedButton.icon(
-                          onPressed: (){
-                            setState(() {
-                              if (dishNameController.text != "") {
-                                dishName = dishNameController.text;
+                  child: Form(
+                    key:_nameKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: dishNameController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter name',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter") ,
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10,15,0,0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_nameKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  dishName = dishNameController.text;
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter") ,
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -120,36 +143,55 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: dishDescriptionController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText:'Enter description',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10,15,0,0),
-                        child: ElevatedButton.icon(
-                          onPressed: (){
-                            setState(() {
-                              if (dishDescriptionController.text != "") {
-                                dishDescription = dishDescriptionController.text;
+                  child: Form(
+                    key: _descriptionKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: dishDescriptionController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter description',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter") ,
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10,15,0,0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_descriptionKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  dishDescription = dishDescriptionController.text;
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter") ,
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -166,36 +208,57 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: priceController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText:'Enter price',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10,15,0,0),
-                        child: ElevatedButton.icon(
-                          onPressed: (){
-                            setState(() {
-                              if (priceController.text != "") {
-                                price = int.tryParse(priceController.text);
+                  child: Form(
+                    key: _priceKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: priceController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter price',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
+                              } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                return 'Enter only numbers';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter") ,
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10,15,0,0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_priceKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  price = int.tryParse(priceController.text);
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter") ,
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -212,36 +275,55 @@ class  _AddMenuPositionState extends State<AddMenuPosition> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: allergensController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText:'Enter allergenes',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10,15,0,0),
-                        child: ElevatedButton.icon(
-                          onPressed: (){
-                            setState(() {
-                              if (allergensController.text != "") {
-                                allergens = allergensController.text;
+                  child: Form(
+                    key: _allergensKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: allergensController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter allergens',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter") ,
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10,15,0,0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_allergensKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  allergens = allergensController.text;
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter") ,
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 

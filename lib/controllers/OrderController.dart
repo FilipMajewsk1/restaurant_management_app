@@ -5,7 +5,7 @@ import 'package:restaurant_management_app/models/Order.dart';
 import 'package:restaurant_management_app/models/OrderLine.dart';
 
 
-const String baseURL ="http://10.147.20.177:8080/orders";
+const String baseURL ="https://restaurantmanagement.blackrock-c5d925d6.northeurope.azurecontainerapps.io/orders";
 class OrderController{
   static Future<List<Order>> getList() async {
     var url = Uri.parse(baseURL);

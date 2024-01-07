@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:restaurant_management_app/models/Menu.dart';
 
-const String baseURL ="http://10.147.20.177:8080/menu";
+const String baseURL ="https://restaurantmanagement.blackrock-c5d925d6.northeurope.azurecontainerapps.io/menu";
 class MenuuController{
   static Future<List<Menu>> getList() async {
     var url = Uri.parse(baseURL);

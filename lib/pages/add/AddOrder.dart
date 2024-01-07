@@ -35,6 +35,8 @@ class _AddOrderState extends State<AddOrder> {
   Future<List<TTable>> tables = TableController.getList();
   Future<List<Menu>> positions = MenuuController.getList();
 
+  final _nameKey = GlobalKey<FormState>();
+  final _quantityKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,38 +70,57 @@ class _AddOrderState extends State<AddOrder> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: nameController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter name',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (nameController.text != "") {
-                                name = nameController.text;
+                  child: Form(
+                    key: _nameKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: nameController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter name',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_nameKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  name = nameController.text;
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter"),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors
+                                  .green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(
+                                  100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -218,33 +239,59 @@ class _AddOrderState extends State<AddOrder> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: TextFormField(
-                    controller: quantityController,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Enter quantity',
-                    ),
-                  ),
-                ),
+                  child: Form(
+                    key: _quantityKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: quantityController,
+                          style:TextStyle(
+                            color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                          ),
+                          cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                          decoration:  InputDecoration(
+                            border: UnderlineInputBorder(),
+                            labelText:'Enter quantity',
+                            labelStyle: TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            errorStyle: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'This field cannot be empty';
+                            } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                              return 'Enter only numbers';
+                            }
+                            return null;
+                          },
+                        ),
+
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        if (quantityController.text != "" && selectedPosition!=null) {
-                          quantity = int.tryParse(quantityController.text);
-                          line = OrderLine(position_id: selectedPosition!.id, quantity: quantity!);
-                          lines.add(line!);
-                        }
-                      });
-                    },
-                    icon: Icon(Icons.check),
-                    label: Text("Enter"),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors
-                          .green[900]),
-                      minimumSize: MaterialStateProperty.all(Size(
-                          100, 35)),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    child: ElevatedButton.icon(
+                      onPressed: (){
+                        if (_quantityKey.currentState?.validate() != false && selectedPosition!=null) {
+                          setState(() {
+                            quantity = int.tryParse(quantityController.text);
+                            line = OrderLine(position_id: selectedPosition!.id, quantity: quantity!);
+                            lines.add(line!);
+                          });
+                        };
+                      },
+                      icon: Icon(Icons.check),
+                      label: Text("Enter"),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors
+                            .green[900]),
+                        minimumSize: MaterialStateProperty.all(Size(
+                            100, 35)),
+                      ),
+                    ),
+                ),
+                      ],
                     ),
                   ),
                 ),
@@ -265,7 +312,6 @@ class _AddOrderState extends State<AddOrder> {
                             lines
                         ).then((success) {
                           if (success) {
-                            print("Order added successfully");
                             Navigator.pop(context);
                           } else {
                             print("Failed to add order");

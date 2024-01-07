@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:restaurant_management_app/models/TTable.dart';
 
-const String baseURL ="http://10.147.20.177:8080/tables";
+const String baseURL ="https://restaurantmanagement.blackrock-c5d925d6.northeurope.azurecontainerapps.io/tables";
 class TableController{
   static Future<List<TTable>> getList() async {
     var url = Uri.parse(baseURL);

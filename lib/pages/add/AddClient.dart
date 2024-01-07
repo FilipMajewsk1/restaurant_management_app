@@ -21,7 +21,10 @@ class _AddClientState extends State<AddClient> {
   String email = "";
   String phoneNum = "";
 
-
+  final _nameKey = GlobalKey<FormState>();
+  final _surnameKey = GlobalKey<FormState>();
+  final _phoneKey = GlobalKey<FormState>();
+  final _emailKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,36 +58,55 @@ class _AddClientState extends State<AddClient> {
           ),
           SizedBox(
             width: 300,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText:'Enter name',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10,15,0,0),
-                  child: ElevatedButton.icon(
-                    onPressed: (){
-                      setState(() {
-                        if (nameController.text != "") {
-                          name = nameController.text;
+            child: Form(
+              key: _nameKey,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: nameController,
+                      style:TextStyle(
+                        color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                      ),
+                      cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                      decoration:  InputDecoration(
+                        border: UnderlineInputBorder(),
+                        labelText:'Enter name',
+                        labelStyle: TextStyle(
+                          color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                        ),
+                        errorStyle: TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'This field cannot be empty';
                         }
-                      });
-                    },
-                    icon: Icon(Icons.check),
-                    label: Text("Enter") ,
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                      minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                        return null;
+                      },
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10,15,0,0),
+                    child: ElevatedButton.icon(
+                      onPressed: (){
+                        if (_nameKey.currentState?.validate() ?? false) {
+                          setState(() {
+                            name = nameController.text;
+                          });
+                        };
+                      },
+                      icon: Icon(Icons.check),
+                      label: Text("Enter") ,
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                        minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -101,36 +123,55 @@ class _AddClientState extends State<AddClient> {
           ),
           SizedBox(
             width: 300,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: surnameController,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText:'Enter surname',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10,15,0,0),
-                  child: ElevatedButton.icon(
-                    onPressed: (){
-                      setState(() {
-                        if (surnameController.text != "") {
-                          surname = surnameController.text;
+            child: Form(
+              key: _surnameKey,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: surnameController,
+                      style:TextStyle(
+                        color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                      ),
+                      cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                      decoration:  InputDecoration(
+                        border: UnderlineInputBorder(),
+                        labelText:'Enter surname',
+                        labelStyle: TextStyle(
+                          color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                        ),
+                        errorStyle: TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'This field cannot be empty';
                         }
-                      });
-                    },
-                    icon: Icon(Icons.check),
-                    label: Text("Enter") ,
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                      minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                        return null;
+                      },
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10,15,0,0),
+                    child: ElevatedButton.icon(
+                      onPressed: (){
+                        if (_surnameKey.currentState?.validate() ?? false) {
+                          setState(() {
+                            surname = surnameController.text;
+                          });
+                        };
+                      },
+                      icon: Icon(Icons.check),
+                      label: Text("Enter") ,
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                        minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -147,36 +188,57 @@ class _AddClientState extends State<AddClient> {
           ),
           SizedBox(
             width: 300,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText:'Enter email',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10,15,0,0),
-                  child: ElevatedButton.icon(
-                    onPressed: (){
-                      setState(() {
-                        if (emailController.text != "") {
-                          email = emailController.text;
+            child: Form(
+              key: _emailKey,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: emailController,
+                      style:TextStyle(
+                        color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                      ),
+                      cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                      decoration:  InputDecoration(
+                        border: UnderlineInputBorder(),
+                        labelText:'Enter email',
+                        labelStyle: TextStyle(
+                          color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                        ),
+                        errorStyle: TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Phone number is required';
+                        } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                          return 'Enter a valid email';
                         }
-                      });
-                    },
-                    icon: Icon(Icons.check),
-                    label: Text("Enter") ,
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                      minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                        return null;
+                      },
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10,15,0,0),
+                    child: ElevatedButton.icon(
+                      onPressed: (){
+                        if (_emailKey.currentState?.validate() ?? false) {
+                          setState(() {
+                            email = emailController.text;
+                          });
+                        };
+                      },
+                      icon: Icon(Icons.check),
+                      label: Text("Enter") ,
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                        minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -193,36 +255,57 @@ class _AddClientState extends State<AddClient> {
           ),
           SizedBox(
             width: 300,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: phoneNumController,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText:'Enter phone number',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10,15,0,0),
-                  child: ElevatedButton.icon(
-                    onPressed: (){
-                      setState(() {
-                        if (phoneNumController.text != "") {
-                          phoneNum = phoneNumController.text;
+            child: Form(
+              key: _phoneKey,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: phoneNumController,
+                      style:TextStyle(
+                        color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                      ),
+                      cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                      decoration:  InputDecoration(
+                        border: UnderlineInputBorder(),
+                        labelText:'Enter phone number',
+                        labelStyle: TextStyle(
+                          color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                        ),
+                        errorStyle: TextStyle( // Styl tekstu błędu
+                          color: Colors.red,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Phone number is required';
+                        } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                          return 'Enter a valid phone number';
                         }
-                      });
-                    },
-                    icon: Icon(Icons.check),
-                    label: Text("Enter") ,
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                      minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                        return null;
+                      },
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10,15,0,0),
+                    child: ElevatedButton.icon(
+                      onPressed: (){
+                        if (_phoneKey.currentState?.validate() ?? false) {
+                          setState(() {
+                            phoneNum = phoneNumController.text;
+                          });
+                        };
+                      },
+                      icon: Icon(Icons.check),
+                      label: Text("Enter") ,
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                        minimumSize: MaterialStateProperty.all(Size(100, 35)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 

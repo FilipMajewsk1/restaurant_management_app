@@ -32,6 +32,7 @@ class _ShowEntityCard extends State<ShowEntityCard> {
       height: 110,
       child: Card(
         color: _themeManager.isDarkMode ? Colors.grey[850] : Colors.white,
+        elevation: 20,
         child: Row(
           children: [
             Expanded(
@@ -56,38 +57,42 @@ class _ShowEntityCard extends State<ShowEntityCard> {
                 ),
               ),
             ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 3, 20, 0),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      widget.route(widget.id);
-                    },
-                    icon: Icon(Icons.remove_red_eye),
-                    label: Text('Show'),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                      minimumSize: MaterialStateProperty.all(Size(100, 25)),
+            Expanded(
+              child: Center(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 25, 20, 5),
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          widget.route(widget.id);
+                        },
+                        icon: Icon(Icons.remove_red_eye),
+                        label: Text('Show'),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                          minimumSize: MaterialStateProperty.all(Size(100, 25)),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 20, 0),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      widget.deleteFunc(widget.id);
-                      Navigator.pop(context);
-                    },
-                    icon:Icon(Icons.delete),
-                    label: Text('Delete'),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.green[900]),
-                      minimumSize: MaterialStateProperty.all(Size(100, 25)),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 20, 0),
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          widget.deleteFunc(widget.id);
+                          Navigator.pop(context);
+                        },
+                        icon:Icon(Icons.delete),
+                        label: Text('Delete'),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.green[900]),
+                          minimumSize: MaterialStateProperty.all(Size(100, 25)),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ],
         ),

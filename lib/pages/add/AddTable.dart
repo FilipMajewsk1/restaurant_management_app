@@ -16,6 +16,8 @@ class _AddTableState extends State<AddTable> {
   String name = "";
   int? size = 1;
 
+  final _nameKey = GlobalKey<FormState>();
+  final _sizeKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,38 +51,57 @@ class _AddTableState extends State<AddTable> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: nameController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter name',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 15, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (nameController.text != "") {
-                                name = nameController.text;
+                  child: Form(
+                    key: _nameKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: nameController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter name',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 15, 0, 0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_nameKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  name = nameController.text;
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter"),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors
+                                  .green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(
+                                  100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -97,38 +118,59 @@ class _AddTableState extends State<AddTable> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: sizeController,
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter size',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 15, 0, 0),
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              if (sizeController.text != "") {
-                                size = int.tryParse(sizeController.text);
+                  child: Form(
+                    key: _sizeKey,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: sizeController,
+                            style:TextStyle(
+                              color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            ),
+                            cursorColor: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                            decoration:  InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText:'Enter size',
+                              labelStyle: TextStyle(
+                                color: _themeManager.isDarkMode ? Colors.white : Colors.grey[850],
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
+                              } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                return 'Enter only numbers';
                               }
-                            });
-                          },
-                          icon: Icon(Icons.check),
-                          label: Text("Enter"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors
-                                .green[900]),
-                            minimumSize: MaterialStateProperty.all(Size(
-                                100, 35)),
+                              return null;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 15, 0, 0),
+                          child: ElevatedButton.icon(
+                            onPressed: (){
+                              if (_sizeKey.currentState?.validate() ?? false) {
+                                setState(() {
+                                  size = int.tryParse(sizeController.text);
+                                });
+                              };
+                            },
+                            icon: Icon(Icons.check),
+                            label: Text("Enter"),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors
+                                  .green[900]),
+                              minimumSize: MaterialStateProperty.all(Size(
+                                  100, 35)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
